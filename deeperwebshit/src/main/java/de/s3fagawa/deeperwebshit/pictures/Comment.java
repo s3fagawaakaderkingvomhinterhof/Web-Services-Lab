@@ -1,7 +1,6 @@
 package de.s3fagawa.deeperwebshit.pictures;
 
 import org.hibernate.annotations.CreationTimestamp;
-import sun.util.resources.LocaleData;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

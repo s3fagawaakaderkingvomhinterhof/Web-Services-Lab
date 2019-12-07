@@ -18,7 +18,7 @@ public class Picture {
     @JsonIgnore
     private byte[] pictureArray;    //Pic wird als byte persistiert
     @ManyToOne
-    private Set<Comment> comments;  //beliebige Anzahl von Kommentaren
+    private Comment comments;  //beliebige Anzahl von Kommentaren
 
     private int likes;
     private int dislikes;
@@ -39,11 +39,11 @@ public class Picture {
         this.pictureArray = pictureArray;
     }
 
-    public Set<Comment> getComments() {
+    public Comment getComments() {
         return comments;
     }
 
-    public void setComments(Set<Comment> comments) {
+    public void setComments(Comment comments) {
         this.comments = comments;
     }
 
