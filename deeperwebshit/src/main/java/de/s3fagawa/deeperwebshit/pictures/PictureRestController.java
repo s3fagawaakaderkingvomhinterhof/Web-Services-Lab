@@ -14,7 +14,7 @@ import java.util.Optional;
 /**
  * REST-Controller verarbeitet REST-Zugriffe.
  */
-
+@CrossOrigin
 @RestController                         //erzeugt Controller, stellt REST Funktionen bereit.
 @RequestMapping("picture")              //Pfad zur Bilder Funktionalität
 public class PictureRestController {

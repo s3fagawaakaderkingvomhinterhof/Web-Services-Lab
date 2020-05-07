@@ -18,7 +18,7 @@ public class Picture {
     @JsonIgnore
     private byte[] pictureArray;    //Pic wird als byte persistiert
     @ManyToOne
-    private Comment comments;  //beliebige Anzahl von Kommentaren
+    private Comment comments;       //beliebige Anzahl von Kommentaren
 
     private int likes;
     private int dislikes;

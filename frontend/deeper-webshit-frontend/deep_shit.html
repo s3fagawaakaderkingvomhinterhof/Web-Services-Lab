@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Deeper Webshit Frontend</title>
+</head>
+<body>
+  <script src="static/scripts.js"></script>
+  <script src="https://cdnjs.deepai.org/deepai.min.js"></script>
+  <script>
+    function clickDeepDreamAction() {
+      deepai.setApiKey('quickstart-QUdJIGlzIGNvbWluZy4uLi4K');
+
+      (async function() {
+        var resp = await deepai.callStandardApi("deepdream", {
+          image: document.getElementById('myImage'),
+        });
+        console.log(resp);
+        console.log(resp.output_url);
+        document.getElementById("deep-dream-pic").innerHTML = '<img src="'+resp.output_url+'">';
+      })()
+    }
+  </script>
+  
+  <div id = "deep_web_shit">
+    <div id = "main">
+      <h1>
+      deep dream platform  
+      </h1>
+      <div id="login-deep-dream-app" style="display: block">
+        <h2>
+          login
+        </h2>
+        <p id="label_name">name:</p>
+        <input id="input_user" type="text">
+        <p id="label_password">password:</p>
+        <input id="input_password" type="password">
+        <p></p>
+        <button type="button" onclick="clickLoginButton()">login</button>
+        <div id="result-login">
+          <p id="paragraph-for-token"></p>
+        </div>
+      </div>
+      
+      <div id = "main_buttons" style="display: none">
+        <button id = "upload_picture_button" type="button" style="display: inline" onclick="clickUploadPicture()">upload picture</button>
+        <button id = "get_picture_info_button" type="button" style="display: inline" onclick="clickSendget_picture_infoButton()">picture info
+        </button>
+        <button id = "get_picture_formatted_button" type="button" style="display: inline" onclick="clickFormattedPicture()">picture</button>
+      </div>
+    </div>
+
+    <div id = "upload_picture" style="display: none">
+      <button id = "back_to_mainpage_from_upload" onclick="clickBackToMainFromUpload()">back</button>
+      <div id="uploadFormular">
+        <form id="formElem">
+          Picture: <input type="file" name="pictureDate" accept="image/*" id="picID">
+          <input type="submit">
+        </form>
+
+        <script>
+          formElem.onsubmit = async (e) => {
+            e.preventDefault();
+
+            let response = await fetch('http://localhost:8080/picture', {
+              method: 'POST',
+              body: new FormData(formElem)
+            });
+            let result = await response.json();
+            console.log(result);
+          };
+        </script>
+      </div>
+    </div>  
+
+    <div id = "get_picture_info" style="display: none">
+      <button id="back_to_mainpage" onclick="clickBackToMainFromGetInfo()">back</button>
+      <div id="searchArea">
+        <h1>search-area</h1>
+        pictureID:<br>
+        <input id="idText" type="text" value="1"><br>
+        <button id="inputButton" type="button" onclick="clickSendButtonPicInfo(document.getElementById('idText').value)">send</button>
+      </div>
+      <div id="resultArea">
+        <h1 id="resultArea-Title">
+          result-area
+        </h1>
+        <ul id="list">
+        </ul>
+      </div>  
+    </div>
+
+    <div id = "get_picture_formatted" style="display: none">
+      <button id="back_to_mainpage_from_formatted" onclick="clickBackToMainFromFormatted()">back</button>
+      <div id = "serachAreaFormattedPic">
+        <h1>search-area</h1>
+        pictureID:<br>
+        <input id="idTextFormatted" type="text" value="1"><br>
+        <button id="inputButtonFormatted" type="button" onclick="clickSendButtonPic(document.getElementById('idTextFormatted').value)">send</button>
+      </div>
+      <div id = "pictureContainer">
+        <img id="myImage" />
+        <p id="text"></p>
+      </div>
+      <div>
+        <button type="button" onclick="clickDeepDreamAction()">deep-dream-action</button>
+      </div>
+      <div id="deep-dream-pic">
+        <img id="deep-dream-result">
+      </div>
+    </div>
+  </div>
+</body>
+</html>
